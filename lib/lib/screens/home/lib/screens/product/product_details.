@@ -1,0 +1,94 @@
+// lib/screens/product/product_details.dart
+import 'package:flutter/material.dart';
+import '../../models/product_model.dart';
+
+class ProductDetails extends StatelessWidget {
+  final Product product;
+
+  // हम जिस प्रोडक्ट पर क्लिक करेंगे, उसका डेटा यहाँ आएगा
+  ProductDetails({required this.product});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(product.name),
+        backgroundColor: Colors.blue[900],
+        foregroundColor: Colors.white,
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // प्रोडक्ट की बड़ी इमेज
+            Container(
+              height: 300,
+              width: double.infinity,
+              color: Colors.white,
+              child: Image.network(product.imageUrl, fit: BoxFit.contain),
+            ),
+            
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // नाम और कैटेगरी
+                  Text(product.category, style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold)),
+                  SizedBox(height: 8),
+                  Text(product.name, style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+                  
+                  SizedBox(height: 10),
+                  
+                  // कीमत और डिस्काउंट
+                  Row(
+                    children: [
+                      Text("₹${product.price}", style: TextStyle(fontSize: 22, color: Colors.green, fontWeight: FontWeight.bold)),
+                      SizedBox(width: 10),
+                      Text("₹${product.oldPrice}", style: TextStyle(fontSize: 16, decoration: TextDecoration.lineThrough, color: Colors.grey)),
+                    ],
+                  ),
+                  
+                  Divider(height: 30),
+                  
+                  // डिस्क्रिप्शन
+                  Text("Product Description", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                  SizedBox(height: 10),
+                  Text(product.description, style: TextStyle(fontSize: 16, color: Colors.black87)),
+                  
+                  SizedBox(height: 100), // नीचे बटन के लिए जगह
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+      
+      // नीचे "Add to Cart" और "Buy Now" बटन
+      bottomSheet: Container(
+        height: 70,
+        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+        decoration: BoxDecoration(color: Colors.white, boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 5)]),
+        child: Row(
+          children: [
+            Expanded(
+              child: OutlinedButton(
+                onPressed: () {},
+                child: Text("ADD TO CART", style: TextStyle(color: Colors.blue[900])),
+                style: OutlinedButton.styleFrom(minimumSize: Size(0, 50)),
+              ),
+            ),
+            SizedBox(width: 10),
+            Expanded(
+              child: ElevatedButton(
+                onPressed: () {},
+                child: Text("BUY NOW", style: TextStyle(color: Colors.white)),
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.orange, minimumSize: Size(0, 50)),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
