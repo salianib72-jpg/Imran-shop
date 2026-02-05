@@ -1,0 +1,59 @@
+// lib/screens/cart/payment_screen.dart
+import 'package:flutter/material.dart';
+
+class PaymentScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Pay & Confirm"), backgroundColor: Colors.blue[900]),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text("Scan QR to Pay via PhonePe/GPay", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            SizedBox(height: 20),
+            
+            // यहाँ आपका QR Code दिखेगा
+            Image.network("https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=baba-mobile-shop@upi", height: 200),
+            
+            SizedBox(height: 20),
+            Text("UPI ID: baba-mobile-shop@upi", style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold)),
+            
+            Divider(height: 50),
+            
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Text("After payment, upload the screenshot for fast confirmation.", textAlign: TextAlign.center),
+            ),
+            
+            SizedBox(height: 20),
+            ElevatedButton.icon(
+              onPressed: () {
+                // गैलरी से फोटो चुनने का कोड यहाँ आएगा
+              },
+              icon: Icon(Icons.upload_file),
+              label: Text("Upload Screenshot"),
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.grey[800]),
+            ),
+            
+            Spacer(),
+            Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: SizedBox(
+                width: double.infinity,
+                height: 50,
+                child: ElevatedButton(
+                  onPressed: () {
+                    // ऑर्डर कन्फर्मेशन मैसेज दिखाएँ
+                  },
+                  child: Text("CONFIRM ORDER", style: TextStyle(color: Colors.white)),
+                  style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
