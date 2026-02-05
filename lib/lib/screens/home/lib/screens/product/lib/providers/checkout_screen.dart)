@@ -1,0 +1,39 @@
+// lib/screens/cart/checkout_screen.dart
+import 'package:flutter/material.dart';
+
+class CheckoutScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Shipping Address"), backgroundColor: Colors.blue[900]),
+      body: Padding(
+        padding: EdgeInsets.all(16.0),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              TextField(decoration: InputDecoration(labelText: "Full Name", border: OutlineInputBorder())),
+              SizedBox(height: 15),
+              TextField(decoration: InputDecoration(labelText: "Mobile Number", border: OutlineInputBorder()), keyboardType: TextInputType.phone),
+              SizedBox(height: 15),
+              TextField(decoration: InputDecoration(labelText: "Full Address", border: OutlineInputBorder()), maxLines: 3),
+              SizedBox(height: 15),
+              TextField(decoration: InputDecoration(labelText: "Pincode", border: OutlineInputBorder()), keyboardType: TextInputType.number),
+              SizedBox(height: 30),
+              SizedBox(
+                width: double.infinity,
+                height: 50,
+                child: ElevatedButton(
+                  onPressed: () {
+                    // Payment Screen पर भेजें
+                  },
+                  child: Text("PROCEED TO PAYMENT", style: TextStyle(color: Colors.white)),
+                  style: ElevatedButton.styleFrom(backgroundColor: Colors.blue[900]),
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
